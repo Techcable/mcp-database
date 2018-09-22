@@ -1,0 +1,11 @@
+[package]
+name = "mcp-database"
+version = "0.1.0"
+authors = ["Techcable <Techcable@techcable.net>"]
+edition = "2018"
+
+[dependencies]
+byteorder = "1.2.6"
+serde = "^1"
+lmdb-zero = "0.4.4"
+bincode = "1.0.1"
