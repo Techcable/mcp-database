@@ -5,6 +5,12 @@ extern crate csv;
 extern crate serde;
 #[macro_use]
 extern crate serde_derive;
+extern crate lmdb_sys;
+extern crate srglib;
+
+use std::sync::Arc;
+
+use srglib::prelude::FrozenMappings;
 
 pub enum Error {
     Lmdb(lmdb::Error),
@@ -21,4 +27,12 @@ impl From<lmdb::Error> for Error {
     }
 }
 
-pub mod raw;
+mod raw;
+
+#[derive(Clone, Debug, Eq, PartialEq, Hash)]
+pub struct MinecraftVersion(Arc<str>);
+
+pub struct McpDatabase {
+    serage_mappings: IndexMap<MinecraftVersion, FrozenMappings>,
+    database: Data
+}
